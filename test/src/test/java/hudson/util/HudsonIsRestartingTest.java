@@ -6,7 +6,7 @@ import static org.hamcrest.Matchers.containsString;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-import com.gargoylesoftware.htmlunit.Page;
+import org.htmlunit.Page;
 import org.junit.Rule;
 import org.junit.Test;
 import org.jvnet.hudson.test.Issue;
@@ -20,7 +20,7 @@ public class HudsonIsRestartingTest {
     @Test
     @Issue("JENKINS-55062")
     public void withPrefix() throws Exception {
-        j.jenkins.servletContext.setAttribute("app", new HudsonIsRestarting());
+        j.jenkins.servletContext.setAttribute("app", new HudsonIsRestarting(false));
         JenkinsRule.WebClient wc = j.createWebClient()
                 // this is a failure page already
                 .withThrowExceptionOnFailingStatusCode(false)
